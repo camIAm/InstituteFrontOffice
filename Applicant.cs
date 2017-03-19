@@ -19,7 +19,7 @@ namespace Events
         public override string ToString(){
             return FirstName.ToString();
         }
-        protected virtual void OnScoreReached(ScoreReachedEventArgs e)
+        public void OnScoreReached(ThresholdReachedEventArgs e)
         {
                 System.Console.WriteLine("applicant subscriber");
         }

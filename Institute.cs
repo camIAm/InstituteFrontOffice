@@ -14,7 +14,7 @@ namespace Events
             //pub.RaiseCustomEvent += HandleCustomEvent;
             MinimumScore = minScore;
         }
-              protected virtual void OnScoreReached(ScoreReachedEventArgs e)
+        static void OnScoreReached(ThresholdReachedEventArgs e)
         {
             System.Console.WriteLine("Institue subscriber");
         }

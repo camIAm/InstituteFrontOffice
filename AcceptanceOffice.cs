@@ -5,13 +5,28 @@ namespace Events
     public class AcceptanceOffice 
     {
         //publisher
-        public event EventHandler<ScoreReachedEventArgs> ScoreReachedEventHandler;
-        protected virtual void OnScoreReached(ScoreReachedEventArgs e)
+        int total;
+        int threshold = 0;
+        
+        //public event EventHandler<ScoreReachedEventArgs> ScoreReachedEventHandler;
+        public event EventHandler<ThresholdReachedEventArgs> ScoreReachedEventHandler;
+        protected void OnScoreReached(ThresholdReachedEventArgs e)
         {
-            EventHandler<ScoreReachedEventArgs> handler = ScoreReachedEventHandler;
+            EventHandler<ThresholdReachedEventArgs> handler = ScoreReachedEventHandler;
             if (handler != null)
             {
                 handler(this, e);
+            }
+        }
+         public void Add(int x)
+        {
+            total += x;
+            if (total >= threshold)
+            {
+                ThresholdReachedEventArgs args = new ThresholdReachedEventArgs();
+                args.Threshold = threshold;
+                args.TimeReached = DateTime.Now;
+                OnScoreReached(args);
             }
         }
     }
